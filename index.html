@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trọng Khang Store - Shop File Gaming Hàng Đầu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #f3f4f6;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            overflow-x: hidden;
+        }
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(249, 115, 22, 0.15) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .card-hover {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(249, 115, 22, 0.9);
+            box-shadow: 0 15px 35px -10px rgba(234, 88, 12, 0.5);
+        }
+        .fancy-btn {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #dc2626 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+        }
+        .fancy-btn:hover {
+            background: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ea580c 100%);
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.7);
+            transform: translateY(-2px);
+        }
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .vinyl-spinning {
+            animation: spinSlow 4s linear infinite;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ea580c; }
+    </style>
+</head>
+<body class="bg-grid-pattern min-h-screen flex flex-col selection:bg-orange-600 selection:text-white">
+
+    <!-- ================= HEADER ================= -->
+    <header class="sticky top-0 z-40 bg-[#080808]/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <a href="#" class="flex items-center gap-1.5 group">
+                    <div class="leading-none">
+                        <div class="text-[11px] font-extrabold italic tracking-wider bg-gradient-to-r from-amber-400 via-orange-500 to-red-600 bg-clip-text text-transparent">
+                            TrKhang
+                        </div>
+                        <div class="text-lg font-black tracking-tight text-white group-hover:text-orange-400 transition">
+                            STORE
+                        </div>
+                    </div>
+                </a>
+
+                <nav class="flex items-center gap-2 sm:gap-3">
+                    <a href="#top" class="px-3.5 py-1.5 rounded-lg bg-white/10 text-white text-xs sm:text-sm font-semibold border border-white/10 transition">
+                        Trang Chủ
+                    </a>
+                    <a href="#features" class="px-3.5 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 text-xs sm:text-sm font-semibold transition hidden sm:inline-block">
+                        Lý Do Chọn
+                    </a>
+                    <button onclick="handleTopUpClick()" class="px-3.5 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition">
+                        <span class="text-amber-400">⚡</span> Nạp Tiền
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Right Area (Auth / User / Admin Board) -->
+            <div id="headerAuthArea" class="flex items-center gap-2.5">
+                <button onclick="openAuthModal('login')" class="fancy-btn text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-xl transition active:scale-95">
+                    Đăng Nhập
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main id="top" class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative pt-10 pb-14 px-4 overflow-hidden">
+            <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[520px] h-[260px] bg-orange-600/20 blur-[120px] pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 mb-5">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span>Hệ thống tự động 24/7 — Uy Tín Hàng Đầu</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6">
+                        Shop <span class="bg-gradient-to-r from-amber-400 via-orange-500 to-red-600 bg-clip-text text-transparent">TrKhang</span>
+                    </h1>
+
+                    <div class="max-w-xl mb-6 rounded-2xl p-[2px] bg-gradient-to-r from-amber-500 via-orange-600 to-red-600 shadow-2xl shadow-orange-900/30">
+                        <div class="rounded-[14px] overflow-hidden bg-[#0c0c0e]">
+                            <canvas id="heroBannerCanvas" width="800" height="280" class="w-full h-auto block"></canvas>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-300 text-xs sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8">
+                        Cung cấp file <strong class="text-white">Hitkit</strong> và <strong class="text-white">Aim</strong> chất lượng cao cho iOS và Android.
+                        An toàn tuyệt đối, hỗ trợ trọn đời.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
+                        <a href="#products" class="px-6 py-3 rounded-xl fancy-btn font-bold text-sm text-white flex items-center gap-2 transition active:scale-95">
+                            <span>🚀</span> Khám Phá Ngay
+                        </a>
+                        <button onclick="handleTopUpClick()" class="px-6 py-3 rounded-xl bg-[#121215] hover:bg-[#1c1c21] border border-orange-500/30 font-bold text-sm text-white flex items-center gap-2 transition active:scale-95">
+                            <span class="text-amber-400">⚡</span> Nạp Tiền Ngay
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Anime Cool Boy Illustration / Banner to fill empty space -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm rounded-3xl p-[2px] bg-gradient-to-b from-orange-500 via-red-600 to-black shadow-2xl shadow-orange-950/80 group">
+                        <div class="rounded-[22px] overflow-hidden bg-[#0a0a0d] relative aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800&auto=format&fit=crop" alt="Anime Cool Boy" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
+                                <div class="inline-block px-3 py-1 rounded-md bg-orange-600/80 text-[10px] font-extrabold uppercase tracking-widest text-white mb-2 self-start border border-orange-400/50">
+                                    Cyber Gaming
+                                </div>
+                                <h3 class="text-xl font-black text-white mb-1">Trí Khang Elite</h3>
+                                <p class="text-xs text-gray-300">Tốc độ • Chính xác • Đẳng cấp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= LÝ DO KHI CHỌN SHOP TRKHANG ================= -->
+        <section id="features" class="py-14 px-4 max-w-6xl mx-auto border-t border-white/10">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-[11px] font-bold uppercase tracking-wider text-orange-400 mb-3">
+                    <span>✨</span> TẠI SAO NÊN CHỌN CHÚNG TÔI
+                </div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold mb-2">Lý Do Khi Chọn Shop TrKhang</h2>
+                <p class="text-gray-400 text-xs sm:text-sm">Cam kết mang lại trải nghiệm tuyệt vời và an toàn nhất cho game thủ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="bg-[#0b0b0e] border border-white/10 hover:border-orange-500/60 rounded-2xl p-6 transition duration-300 group card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-2xl mb-4 shadow-lg shadow-orange-600/30 group-hover:scale-110 transition">
+                        ⚡
+                    </div>
+                    <h3 class="text-base font-black text-white mb-2">Tự Động 24/7</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Hệ thống nạp thẻ và giao dịch tự động hoàn toàn, nhận file siêu tốc chỉ trong tích tắc.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-[#0b0b0e] border border-white/10 hover:border-orange-500/60 rounded-2xl p-6 transition duration-300 group card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-2xl mb-4 shadow-lg shadow-orange-600/30 group-hover:scale-110 transition">
+                        🛡️
+                    </div>
+                    <h3 class="text-base font-black text-white mb-2">An Toàn Tuyệt Đối</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">File chuẩn sạch, chống ban hiệu quả, bảo vệ tài khoản game của bạn an toàn 100%.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-[#0b0b0e] border border-white/10 hover:border-orange-500/60 rounded-2xl p-6 transition duration-300 group card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-2xl mb-4 shadow-lg shadow-orange-600/30 group-hover:scale-110 transition">
+                        🔄
+                    </div>
+                    <h3 class="text-base font-black text-white mb-2">Cập Nhật Liên Tục</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Luôn update phiên bản mới nhất theo từng bản cập nhật của game, hỗ trợ trọn đời.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-[#0b0b0e] border border-white/10 hover:border-orange-500/60 rounded-2xl p-6 transition duration-300 group card-hover">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-2xl mb-4 shadow-lg shadow-orange-600/30 group-hover:scale-110 transition">
+                        💬
+                    </div>
+                    <h3 class="text-base font-black text-white mb-2">Hỗ Trợ Tận Tâm</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Đội ngũ admin hỗ trợ nhiệt tình qua box Zalo, hướng dẫn cài đặt chi tiết từ A-Z.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-12 px-4 max-w-5xl mx-auto">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-[11px] font-bold uppercase tracking-wider text-orange-400 mb-3">
+                    <span>🔥</span> DANH MỤC SẢN PHẨM
+                </div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold mb-2">Kho Súng & Công Cụ Gaming</h2>
+                <p class="text-gray-400 text-xs sm:text-sm">Đầy đủ các gói Android & iOS chất lượng cao</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex items-center justify-center gap-2.5 mb-8">
+                <button onclick="filterProducts('all')" id="tab-all" class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#1c1c21] text-white border border-orange-500/60 shadow-md transition">✨ Tất Cả</button>
+                <button onclick="filterProducts('android')" id="tab-android" class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#0d0d10] text-gray-400 hover:text-white border border-white/10 transition">Android</button>
+                <button onclick="filterProducts('ios')" id="tab-ios" class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#0d0d10] text-gray-400 hover:text-white border border-white/10 transition">iOS</button>
+            </div>
+
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-5"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-[#030303] py-8 px-4 text-center text-xs text-gray-500 mt-12">
+        <p>© 2026 Trọng Khang Store. All rights reserved. Orange & Black Mythical Theme.</p>
+    </footer>
+
+    <!-- ================= ĐĨA NHẠC CHILL (PIANO, MƯA, GIÓ) ================= -->
+    <div class="fixed bottom-5 right-5 z-40 flex items-center gap-3 bg-[#0d0d10]/90 border border-orange-500/40 backdrop-blur-md px-3.5 py-2 rounded-full shadow-2xl shadow-orange-950/80">
+        <div id="vinylDisc" class="w-9 h-9 rounded-full bg-gradient-to-tr from-black via-orange-950 to-amber-900 border-2 border-orange-500 flex items-center justify-center shadow-md cursor-pointer transition" onclick="toggleChillMusic()" title="Bật/Tắt nhạc Chill (Piano, Mưa, Gió)">
+            <div class="w-3 h-3 rounded-full bg-amber-400 border border-white"></div>
+        </div>
+        <div class="cursor-pointer select-none" onclick="toggleChillMusic()">
+            <div id="musicStatusText" class="text-[11px] font-extrabold text-orange-400">🎵 Nhạc Chill: Tắt</div>
+            <div class="text-[9px] text-gray-400">Piano • Mưa • Gió</div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 1: THÔNG BÁO ================= -->
+    <div id="noticeModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white text-gray-900 rounded-xl w-full max-w-sm p-6 shadow-2xl">
+            <h3 id="noticeTitle" class="text-lg font-extrabold text-gray-900 mb-2">Thông báo</h3>
+            <p id="noticeMessage" class="text-sm text-gray-600 whitespace-pre-line mb-6"></p>
+            <div class="flex justify-end">
+                <button onclick="closeNoticeModal()" class="px-5 py-2 rounded-lg bg-gray-900 hover:bg-gray-800 text-white text-xs font-bold uppercase transition">
+                    ĐỒNG Ý
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 2: ĐĂNG NHẬP / ĐĂNG KÝ ================= -->
+    <div id="authModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#0e0e12] border border-white/15 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center">✕</button>
+
+            <div class="flex items-center gap-2 mb-5">
+                <span class="text-xl">🔐</span>
+                <h3 class="text-lg font-extrabold text-white">Tài Khoản TrKhang Store</h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 p-1 rounded-xl bg-[#07070a] border border-white/10 mb-5">
+                <button id="authTabLogin" onclick="switchAuthTab('login')" class="py-2 rounded-lg text-xs font-bold bg-orange-600 text-white transition">Đăng Nhập</button>
+                <button id="authTabRegister" onclick="switchAuthTab('register')" class="py-2 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition">Đăng Ký</button>
+            </div>
+
+            <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1.5">Tên tài khoản</label>
+                    <input type="text" id="authUsername" required placeholder="Nhập tên tài khoản của bạn" class="w-full px-3.5 py-2.5 rounded-xl bg-[#07070a] border border-white/15 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-orange-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1.5">Mật khẩu</label>
+                    <input type="password" id="authPassword" required placeholder="Mật khẩu tài khoản" class="w-full px-3.5 py-2.5 rounded-xl bg-[#07070a] border border-white/15 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-orange-500">
+                </div>
+
+                <button type="submit" id="authSubmitBtn" class="w-full py-3 rounded-xl fancy-btn font-bold text-sm text-white transition active:scale-95">
+                    🚀 Đăng Nhập
+                </button>
+            </form>
+
+            <div class="mt-4 pt-3 border-t border-white/10 text-center">
+                <button onclick="openAdminLoginModal()" class="text-xs text-orange-400 hover:text-orange-300 font-semibold underline transition">
+                    Are you an Admin?
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL NHẬP MẬT KHẨU ADMIN ================= -->
+    <div id="adminLoginModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#0e0e12] border border-orange-500/50 rounded-2xl w-full max-w-sm p-6 shadow-2xl relative">
+            <button onclick="closeAdminLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center">✕</button>
+            <div class="text-center mb-4">
+                <span class="text-3xl">👑</span>
+                <h3 class="text-lg font-extrabold text-white mt-1">Admin Authentication</h3>
+                <p class="text-xs text-gray-400">Nhập mật khẩu quản trị hệ thống</p>
+            </div>
+            
+            <form onsubmit="submitAdminPassword(event)" class="space-y-4">
+                <div>
+                    <input type="password" id="adminPassInput" required placeholder="Nhập mật khẩu admin..." class="w-full px-4 py-3 rounded-xl bg-[#07070a] border border-orange-500/40 text-sm font-mono text-center text-white placeholder-gray-500 focus:outline-none focus:border-orange-400 tracking-widest">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl fancy-btn font-extrabold text-sm text-white transition active:scale-95">
+                    Xác Nhận Truy Cập
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 3: NẠP TIỀN BẰNG THẺ CÁO ================= -->
+    <div id="topUpModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#0e0e12] border border-white/15 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button onclick="closeTopUpModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center">✕</button>
+            <h3 class="text-lg font-extrabold mb-1 flex items-center gap-2"><span class="text-amber-400">⚡</span> Nạp Tiền Bằng Thẻ Cào</h3>
+            <p class="text-xs text-gray-400 mb-4">Chọn nhà mạng và nhập chính xác mã thẻ, seri.</p>
+
+            <form onsubmit="submitCardTopUp(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-gray-300 mb-1">Chọn nhà mạng</label>
+                    <select id="cardNetwork" class="w-full px-3.5 py-2.5 rounded-xl bg-[#07070a] border border-white/15 text-sm text-white focus:outline-none focus:border-orange-500">
+                        <option value="Viettel">Viettel</option>
+                        <option value="Vinaphone">Vinaphone</option>
+                        <option value="Mobifone">Mobifone</option>
+                        <option value="Vietnamobile">Vietnamobile</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-300 mb-1">Mệnh giá thẻ</label>
+                    <select id="cardAmount" class="w-full px-3.5 py-2.5 rounded-xl bg-[#07070a] border border-white/15 text-sm text-white focus:outline-none focus:border-orange-500">
+                        <option value="10000">10.000 đ</option>
+                        <option value="20000">20.000 đ</option>
+                        <option value="50000">50.000 đ</option>
+                        <option value="100000" selected>100.000 đ</option>
+                        <option value="200000">200.000 đ</option>
+                        <option value="500000">500.000 đ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-300 mb-1">Mã thẻ cào (PIN)</label>
+                    <input type="text" id="cardPin" required placeholder="Nhập mã thẻ cào" class="w-full px-3.5 py-2.5 rounded-xl bg-[#07070a] border border-white/15 text-sm font-mono text-white placeholder-gray-500 focus:outline-none focus:border-orange-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-300 mb-1">Số seri thẻ</label>
+                    <input type="text" id="cardSerial" required placeholder="Nhập số seri" class="w-full px-3.5 py-2.5 rounded-xl bg-[#07070a] border border-white/15 text-sm font-mono text-white placeholder-gray-500 focus:outline-none focus:border-orange-500">
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-black font-extrabold text-sm transition active:scale-95 shadow-lg shadow-orange-500/30">
+                    Gửi Thẻ Nạp Ngay
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 4: ADMIN BOARD ================= -->
+    <div id="adminModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-[#0b0b0e] border border-orange-500/40 rounded-2xl w-full max-w-4xl p-6 shadow-2xl relative max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">👑</span>
+                    <h3 class="text-xl font-black bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">ADMIN BOARD - QUẢN TRỊ TRKHANG STORE</h3>
+                </div>
+                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-white w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center text-lg">✕</button>
+            </div>
+
+            <div class="flex-grow overflow-y-auto space-y-6 pr-1">
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-wider text-orange-400 mb-3 flex items-center gap-2">
+                        <span>👥</span> Danh Sách Tài Khoản Đã Tạo Trong Web
+                    </h4>
+                    <div class="overflow-x-auto rounded-xl border border-white/10 bg-[#07070a]">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-[#121217] text-gray-300 uppercase border-b border-white/10">
+                                <tr>
+                                    <th class="p-3">Tên tài khoản</th>
+                                    <th class="p-3">Số dư hiện tại</th>
+                                    <th class="p-3">Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminUsersTableBody" class="divide-y divide-white/5 text-gray-200"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-wider text-amber-400 mb-3 flex items-center gap-2">
+                        <span>💳</span> Thẻ Cào Người Dùng Đã Nạp (Cần Xét Duyệt)
+                    </h4>
+                    <div class="overflow-x-auto rounded-xl border border-white/10 bg-[#07070a]">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-[#12161b] text-gray-300 uppercase border-b border-white/10">
+                                <tr>
+                                    <th class="p-3">Tài khoản</th>
+                                    <th class="p-3">Nhà mạng</th>
+                                    <th class="p-3">Mệnh giá</th>
+                                    <th class="p-3 font-mono">Mã Thẻ (PIN)</th>
+                                    <th class="p-3 font-mono">Seri</th>
+                                    <th class="p-3">Trạng thái</th>
+                                    <th class="p-3 text-center">Hành động (Duyệt / Từ chối)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminCardsTableBody" class="divide-y divide-white/5 text-gray-200"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 5: MUA SẢN PHẨM & LẤY FILE ================= -->
+    <div id="buyModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#0e0e12] border border-white/15 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button onclick="closeBuyModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center">✕</button>
+            <div id="buyModalContent"></div>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        const PRODUCTS = [
+            // Android
+            { id: 1, title: "Aimbody", category: "android", price: 80000, bannerTop: "AIMBODY", bannerSub: "ANDROID VIP", isMulti: false, isAimbody: true },
+            { id: 2, title: "Aimdrag", category: "android", price: 100000, bannerTop: "AIMDRAG", bannerSub: "ANDROID PRO", isMulti: false },
+            { id: 3, title: "Aim Make Riêng Theo Máy", category: "all", price: 20000, bannerTop: "CUSTOM MAKE", bannerSub: "MỌI THIẾT BỊ", isMulti: false, isCustomMake: true },
+            { id: 4, title: "Aimlock", category: "android", price: 50000, bannerTop: "AIMLOCK", bannerSub: "ANDROID STANDARD", isMulti: false },
+            { id: 5, title: "Nhẹ Tâm Cân Rank", category: "android", price: 20000, bannerTop: "NHẸ TÂM", bannerSub: "RANK SMOOTH", isMulti: false },
+            { id: 6, title: "Aimlock Plus v1", category: "android", price: 50000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 1", isMulti: false },
+            { id: 7, title: "Aimlock Plus v2", category: "android", price: 100000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 2", isMulti: false },
+            { id: 8, title: "Aimlock Plus v3", category: "android", price: 200000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 3", isMulti: false },
+            { id: 9, title: "Aimlock Plus v4", category: "android", price: 500000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 4 ULTIMATE", isMulti: false },
+            { 
+                id: 10, title: "KhangAimlockPannel", category: "android", bannerTop: "PANNEL", bannerSub: "ALL HACKS ANDROID", isMulti: true,
+                options: [
+                    { label: "20k / day", price: 20000 },
+                    { label: "50k / week", price: 50000 },
+                    { label: "100k / month", price: 100000 },
+                    { label: "200k / year", price: 200000 },
+                    { label: "500k / vĩnh viễn", price: 500000 }
+                ]
+            },
+            { 
+                id: 11, title: "App Aimlock", category: "android", bannerTop: "APP AIMLOCK", bannerSub: "ANDROID APP", isMulti: true,
+                options: [
+                    { label: "20k / day", price: 20000 },
+                    { label: "100k / vĩnh viễn", price: 100000 }
+                ]
+            },
+
+            // iOS
+            { id: 12, title: "Dpi Vip Cân Phòng", category: "ios", price: 80000, bannerTop: "DPI VIP", bannerSub: "IOS ROOM CONTROL", isMulti: false },
+            { 
+                id: 13, title: "App KhangAimlockPannel", category: "ios", bannerTop: "IOS PANNEL", bannerSub: "ALL HACKS IOS", isMulti: true,
+                options: [
+                    { label: "20k / day", price: 20000 },
+                    { label: "50k / week", price: 50000 },
+                    { label: "100k / month", price: 100000 },
+                    { label: "200k / year", price: 200000 },
+                    { label: "500k / vĩnh viễn", price: 500000 }
+                ]
+            },
+            { id: 14, title: "Aimbody", category: "ios", price: 80000, bannerTop: "AIMBODY", bannerSub: "IOS VIP", isMulti: false, isAimbody: true },
+            { id: 15, title: "Aimneck", category: "ios", price: 50000, bannerTop: "AIMNECK", bannerSub: "IOS HEAD/NECK", isMulti: false },
+            { id: 16, title: "Aimdrag", category: "ios", price: 80000, bannerTop: "AIMDRAG", bannerSub: "IOS DRAG", isMulti: false },
+            { id: 17, title: "Aimlock", category: "ios", price: 50000, bannerTop: "AIMLOCK", bannerSub: "IOS STANDARD", isMulti: false }
+        ];
+
+        let usersDB = JSON.parse(localStorage.getItem('trkhang_users_db')) || [
+            { username: "trí khang", password: "admin_password", balance: 999999, isAdmin: true, orders: [] }
+        ];
+        let pendingCards = JSON.parse(localStorage.getItem('trkhang_pending_cards')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('trkhang_current_user')) || null;
+        let currentFilter = 'all';
+
+        function saveDatabases() {
+            localStorage.setItem('trkhang_users_db', JSON.stringify(usersDB));
+            localStorage.setItem('trkhang_pending_cards', JSON.stringify(pendingCards));
+            localStorage.setItem('trkhang_current_user', JSON.stringify(currentUser));
+        }
+
+        function drawHeroBanner() {
+            const canvas = document.getElementById('heroBannerCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+
+            const bg = ctx.createLinearGradient(0, 0, w, h);
+            bg.addColorStop(0, '#0a0502');
+            bg.addColorStop(0.5, '#1e0c03');
+            bg.addColorStop(1, '#050505');
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.fillStyle = 'rgba(234, 88, 12, 0.3)';
+            ctx.beginPath(); ctx.arc(w/2, h/2, 170, 0, Math.PI * 2); ctx.fill();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'italic 900 52px "Be Vietnam Pro", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('TrKhangStore', w/2, h/2 - 10);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = '800 16px "Be Vietnam Pro", sans-serif';
+            ctx.fillText('SHOP FILE GAMING HÀNG ĐẦU', w/2, h/2 + 35);
+        }
+
+        function filterProducts(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-tab').forEach(b => {
+                b.className = "filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[#0d0d10] text-gray-400 hover:text-white border border-white/10 transition";
+            });
+            document.getElementById(`tab-${cat}`).className = "filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-[#1c1c21] text-white border border-orange-500/60 shadow-md transition";
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const list = PRODUCTS.filter(p => currentFilter === 'all' || p.category === currentFilter || p.category === 'all');
+            grid.innerHTML = list.map(p => {
+                let priceText = p.isMulti ? "Nhiều gói lựa chọn" : p.price.toLocaleString('vi-VN') + " đ";
+                let badgeText = p.category === 'all' ? 'Tất cả' : p.category.toUpperCase();
+                let badgeColor = p.category === 'ios' ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : (p.category === 'all' ? 'bg-purple-500/20 text-purple-300 border-purple-500/40' : 'bg-orange-500/20 text-orange-300 border-orange-500/40');
+                
+                return `
+                <div class="bg-[#0b0b0e] border border-white/10 rounded-2xl p-4 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold border uppercase ${badgeColor}">
+                                ${badgeText}
+                            </span>
+                            <span class="text-[11px] text-emerald-400 font-semibold">● Sẵn sàng</span>
+                        </div>
+                        <div class="h-28 rounded-xl bg-gradient-to-r from-orange-950 via-zinc-900 to-amber-950 flex flex-col items-center justify-center font-black text-lg tracking-wider mb-3 text-orange-200 border border-orange-500/20 text-center px-2">
+                            <span>${p.bannerTop}</span>
+                            <span class="text-[10px] text-amber-400 tracking-normal font-medium mt-1">${p.bannerSub}</span>
+                        </div>
+                        <h3 class="font-extrabold text-base mb-1 text-white">${p.title}</h3>
+                        <p class="text-xs text-gray-400 mb-4">Cập nhật liên tục, an toàn, hỗ trợ trọn đời.</p>
+                    </div>
+                    <div>
+                        <div class="text-orange-400 font-black text-base sm:text-lg mb-3">${priceText}</div>
+                        <button onclick="openBuyModal(${p.id})" class="w-full py-2.5 rounded-xl fancy-btn font-bold text-sm text-white transition active:scale-95">
+                            🔥 Mua Ngay
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function updateHeaderUI() {
+            const area = document.getElementById('headerAuthArea');
+            if (currentUser) {
+                let adminBoardBtn = (currentUser.isAdmin || currentUser.username.toLowerCase() === 'trí khang')
+                    ? `<button onclick="openAdminModal()" class="px-3 py-1.5 rounded-xl fancy-btn text-xs font-black text-white transition shadow-lg shadow-orange-600/30">👑 Admin Board</button>`
+                    : '';
+
+                area.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        ${adminBoardBtn}
+                        <div class="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs font-extrabold">
+                            💰 ${currentUser.balance.toLocaleString('vi-VN')} đ
+                        </div>
+                        <div class="px-3 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-white">
+                            👤 ${currentUser.username}
+                        </div>
+                        <button onclick="logoutUser()" class="px-2.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 text-xs font-bold transition">Thoát</button>
+                    </div>
+                `;
+            } else {
+                area.innerHTML = `
+                    <button onclick="openAuthModal('login')" class="fancy-btn text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-xl transition active:scale-95">
+                        Đăng Nhập
+                    </button>
+                `;
+            }
+        }
+
+        function showNotice(title, message) {
+            document.getElementById('noticeTitle').innerText = title;
+            document.getElementById('noticeMessage').innerText = message;
+            const modal = document.getElementById('noticeModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function closeNoticeModal() {
+            const modal = document.getElementById('noticeModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        let authMode = 'login';
+        function openAuthModal(mode = 'login') {
+            switchAuthTab(mode);
+            document.getElementById('authModal').classList.remove('hidden');
+            document.getElementById('authModal').classList.add('flex');
+        }
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+            document.getElementById('authModal').classList.remove('flex');
+        }
+        function switchAuthTab(mode) {
+            authMode = mode;
+            const loginTab = document.getElementById('authTabLogin');
+            const regTab = document.getElementById('authTabRegister');
+            const submitBtn = document.getElementById('authSubmitBtn');
+
+            if (mode === 'login') {
+                loginTab.className = "py-2 rounded-lg text-xs font-bold bg-orange-600 text-white transition";
+                regTab.className = "py-2 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition";
+                submitBtn.innerHTML = "🚀 Đăng Nhập";
+            } else {
+                regTab.className = "py-2 rounded-lg text-xs font-bold bg-orange-600 text-white transition";
+                loginTab.className = "py-2 rounded-lg text-xs font-bold text-gray-400 hover:text-white transition";
+                submitBtn.innerHTML = "✨ Tạo Tài Khoản";
+            }
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            const username = document.getElementById('authUsername').value.trim();
+            const password = document.getElementById('authPassword').value;
+
+            if (authMode === 'login') {
+                const found = usersDB.find(u => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+                if (found) {
+                    currentUser = found;
+                    saveDatabases();
+                    updateHeaderUI();
+                    closeAuthModal();
+                    showNotice('Thành công', `Đăng nhập thành công tài khoản ${currentUser.username}!`);
+                } else {
+                    showNotice('Lỗi đăng nhập', 'Tên tài khoản hoặc mật khẩu không chính xác!');
+                }
+            } else {
+                const exists = usersDB.find(u => u.username.toLowerCase() === username.toLowerCase());
+                if (exists) {
+                    showNotice('Thông báo', 'Không cho trùng tài khoản');
+                    return;
+                }
+                const newUser = {
+                    username: username,
+                    password: password,
+                    balance: 0,
+                    isAdmin: false,
+                    orders: []
+                };
+                usersDB.push(newUser);
+                currentUser = newUser;
+                saveDatabases();
+                updateHeaderUI();
+                closeAuthModal();
+                showNotice('Đăng ký thành công', `Tài khoản ${username} đã được tạo và lưu vào hệ thống!`);
+            }
+        }
+
+        function openAdminLoginModal() {
+            closeAuthModal();
+            document.getElementById('adminPassInput').value = '';
+            const modal = document.getElementById('adminLoginModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeAdminLoginModal() {
+            const modal = document.getElementById('adminLoginModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function submitAdminPassword(e) {
+            e.preventDefault();
+            let pass = document.getElementById('adminPassInput').value;
+            if (pass === "08042014") {
+                closeAdminLoginModal();
+                let tkUser = usersDB.find(u => u.username.toLowerCase() === "trí khang");
+                if (!tkUser) {
+                    tkUser = { username: "trí khang", password: "08042014", balance: 500000, isAdmin: true, orders: [] };
+                    usersDB.push(tkUser);
+                } else {
+                    tkUser.isAdmin = true;
+                }
+                currentUser = tkUser;
+                saveDatabases();
+                updateHeaderUI();
+                showNotice('Chào Admin Trí Khang', 'Đã đăng nhập thành công vào tài khoản Quản Trị Trí Khang!');
+                openAdminModal();
+            } else {
+                showNotice('Sai mật khẩu', 'Mật khẩu Admin không chính xác!');
+            }
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            saveDatabases();
+            updateHeaderUI();
+            showNotice('Đăng xuất', 'Đã đăng xuất khỏi tài khoản.');
+        }
+
+        function handleTopUpClick() {
+            if (!currentUser) {
+                showNotice('Thông báo', 'Bạn cần đăng nhập để nạp tiền!');
+                openAuthModal('login');
+                return;
+            }
+            document.getElementById('topUpModal').classList.remove('hidden');
+            document.getElementById('topUpModal').classList.add('flex');
+        }
+        function closeTopUpModal() {
+            document.getElementById('topUpModal').classList.add('hidden');
+            document.getElementById('topUpModal').classList.remove('flex');
+        }
+
+        function submitCardTopUp(e) {
+            e.preventDefault();
+            const network = document.getElementById('cardNetwork').value;
+            const amount = parseInt(document.getElementById('cardAmount').value);
+            const pin = document.getElementById('cardPin').value.trim();
+            const serial = document.getElementById('cardSerial').value.trim();
+
+            const cardData = {
+                id: Date.now(),
+                username: currentUser.username,
+                network: network,
+                amount: amount,
+                pin: pin,
+                serial: serial,
+                status: 'Chờ duyệt'
+            };
+            pendingCards.push(cardData);
+            saveDatabases();
+            closeTopUpModal();
+
+            showNotice('Gửi thẻ thành công!', 'Đợi vài tiếng nhé, Admin đang kiểm tra thẻ dùng chưa và xác nhận nạp tiền!');
+        }
+
+        function openAdminModal() {
+            if (!currentUser || (!currentUser.isAdmin && currentUser.username.toLowerCase() !== 'trí khang')) {
+                showNotice('Từ chối truy cập', 'Bạn không có quyền truy cập Admin Board!');
+                return;
+            }
+            renderAdminTables();
+            document.getElementById('adminModal').classList.remove('hidden');
+            document.getElementById('adminModal').classList.add('flex');
+        }
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+            document.getElementById('adminModal').classList.remove('flex');
+        }
+
+        function renderAdminTables() {
+            const usersTbody = document.getElementById('adminUsersTableBody');
+            usersTbody.innerHTML = usersDB.map(u => `
+                <tr class="hover:bg-white/5">
+                    <td class="p-3 font-bold text-white">${u.username} ${u.username.toLowerCase() === 'trí khang' ? '👑' : ''}</td>
+                    <td class="p-3 text-emerald-400 font-semibold">${u.balance.toLocaleString('vi-VN')} đ</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] ${u.isAdmin ? 'bg-orange-500/20 text-orange-300' : 'bg-gray-500/20 text-gray-300'}">${u.isAdmin ? 'Admin' : 'Thành viên'}</span></td>
+                </tr>
+            `).join('');
+
+            const cardsTbody = document.getElementById('adminCardsTableBody');
+            if (pendingCards.length === 0) {
+                cardsTbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-500">Chưa có thẻ cào nào được gửi lên.</td></tr>`;
+                return;
+            }
+
+            cardsTbody.innerHTML = pendingCards.map(c => `
+                <tr class="hover:bg-white/5">
+                    <td class="p-3 font-bold text-white">${c.username}</td>
+                    <td class="p-3 text-amber-300">${c.network}</td>
+                    <td class="p-3 text-orange-400 font-bold">${c.amount.toLocaleString('vi-VN')} đ</td>
+                    <td class="p-3 font-mono text-amber-300">${c.pin}</td>
+                    <td class="p-3 font-mono text-amber-300">${c.serial}</td>
+                    <td class="p-3">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${c.status === 'Thành công' ? 'bg-emerald-500/20 text-emerald-300' : (c.status === 'Từ chối' ? 'bg-rose-500/20 text-rose-300' : 'bg-amber-500/20 text-amber-300')}">
+                            ${c.status}
+                        </span>
+                    </td>
+                    <td class="p-3 text-center">
+                        ${c.status === 'Chờ duyệt' ? `
+                            <div class="flex items-center justify-center gap-1.5">
+                                <button onclick="approveCard(${c.id})" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] transition">Xác Nhận</button>
+                                <button onclick="rejectCard(${c.id})" class="px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-bold text-[11px] transition">Từ Chối</button>
+                            </div>
+                        ` : `<span class="text-xs text-gray-500">Đã xử lý</span>`}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function approveCard(cardId) {
+            const card = pendingCards.find(c => c.id === cardId);
+            if (!card || card.status !== 'Chờ duyệt') return;
+
+            card.status = 'Thành công';
+
+            const targetUser = usersDB.find(u => u.username.toLowerCase() === card.username.toLowerCase());
+            if (targetUser) {
+                targetUser.balance += card.amount;
+                if (currentUser && currentUser.username.toLowerCase() === targetUser.username.toLowerCase()) {
+                    currentUser.balance = targetUser.balance;
+                    updateHeaderUI();
+                }
+            }
+
+            saveDatabases();
+            renderAdminTables();
+            showNotice('Đã xác nhận', `Đã duyệt thẻ ${card.network} trị giá ${card.amount.toLocaleString('vi-VN')}đ cho tài khoản ${card.username}! Số tiền đã được cộng vào tài khoản.`);
+        }
+
+        function rejectCard(cardId) {
+            const card = pendingCards.find(c => c.id === cardId);
+            if (!card || card.status !== 'Chờ duyệt') return;
+
+            card.status = 'Từ chối';
+            saveDatabases();
+            renderAdminTables();
+            showNotice('Đã từ chối', `Đã từ chối thẻ ${card.network} của tài khoản ${card.username}. Thẻ không hợp lệ hoặc đã sử dụng!`);
+        }
+
+        function openBuyModal(productId) {
+            const p = PRODUCTS.find(item => item.id === productId);
+            if (!p) return;
+
+            if (!currentUser) {
+                showNotice('Thông báo', 'Bạn cần đăng nhập để mua sản phẩm!');
+                openAuthModal('login');
+                return;
+            }
+
+            const modal = document.getElementById('buyModal');
+            const content = document.getElementById('buyModalContent');
+
+            let customDeviceHtml = '';
+            if (p.isCustomMake) {
+                customDeviceHtml = `
+                    <div class="mb-4">
+                        <label class="block text-xs font-semibold text-orange-300 mb-1.5">📱 Máy bạn là gì? (Adr, iOS, dòng máy...):</label>
+                        <input type="text" id="customDeviceInput" required placeholder="Ví dụ: Android - Samsung S23, iOS - iPhone 14 Pro..." class="w-full px-3 py-2.5 rounded-xl bg-[#07070a] border border-orange-500/50 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-orange-400">
+                    </div>
+                `;
+            }
+
+            let priceSelectionHtml = '';
+            if (p.isMulti) {
+                priceSelectionHtml = `
+                    <div class="mb-4">
+                        <label class="block text-xs text-gray-300 mb-1.5">Chọn gói thời gian</label>
+                        <select id="selectedOptionPrice" class="w-full px-3 py-2 rounded-xl bg-[#07070a] border border-white/15 text-sm text-white focus:outline-none focus:border-orange-500">
+                            ${p.options.map(opt => `<option value="${opt.price}">${opt.label} - ${opt.price.toLocaleString('vi-VN')} đ</option>`).join('')}
+                        </select>
+                    </div>
+                `;
+            } else {
+                priceSelectionHtml = `
+                    <input type="hidden" id="selectedOptionPrice" value="${p.price}">
+                    <div class="flex justify-between items-center mb-4"><span class="text-gray-400">Giá sản phẩm:</span><strong class="text-orange-400 text-base">${p.price.toLocaleString('vi-VN')} đ</strong></div>
+                `;
+            }
+
+            content.innerHTML = `
+                <h3 class="text-lg font-extrabold mb-1">Xác Nhận Mua Hàng</h3>
+                <p class="text-xs text-gray-400 mb-4">Giao hàng tự động ngay sau khi thanh toán.</p>
+                <div class="p-4 rounded-xl bg-[#07070a] border border-white/10 space-y-2 mb-4 text-xs">
+                    <div class="flex justify-between"><span class="text-gray-400">Sản phẩm:</span><strong class="text-white">${p.title}</strong></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Danh mục:</span><strong class="text-amber-400 uppercase">${p.category}</strong></div>
+                    ${customDeviceHtml}
+                    ${priceSelectionHtml}
+                    <div class="flex justify-between pt-2 border-t border-white/10"><span class="text-gray-400">Số dư hiện tại:</span><strong class="text-emerald-400">${currentUser.balance.toLocaleString('vi-VN')} đ</strong></div>
+                </div>
+                <button onclick="processPurchase(${p.id})" class="w-full py-3 rounded-xl fancy-btn font-bold text-sm text-white transition">
+                    Thanh Toán Ngay
+                </button>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeBuyModal() {
+            const modal = document.getElementById('buyModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function processPurchase(productId) {
+            const p = PRODUCTS.find(item => item.id === productId);
+            const priceSelect = document.getElementById('selectedOptionPrice');
+            const finalPrice = parseInt(priceSelect.value);
+
+            if (p.isCustomMake) {
+                const deviceInput = document.getElementById('customDeviceInput');
+                if (!deviceInput || !deviceInput.value.trim()) {
+                    showNotice('Thiếu thông tin', 'Vui lòng nhập thông tin thiết bị của bạn!');
+                    return;
+                }
+            }
+
+            if (currentUser.balance < finalPrice) {
+                closeBuyModal();
+                showNotice('Số dư không đủ', 'Vui lòng nạp thêm tiền vào tài khoản để mua sản phẩm này!');
+                return;
+            }
+
+            currentUser.balance -= finalPrice;
+            const idx = usersDB.findIndex(u => u.username.toLowerCase() === currentUser.username.toLowerCase());
+            if (idx !== -1) {
+                usersDB[idx].balance = currentUser.balance;
+            }
+
+            saveDatabases();
+            updateHeaderUI();
+            closeBuyModal();
+
+            // Hiển thị thông tin lấy file theo yêu cầu
+            showFileDeliveryModal(p);
+        }
+
+        function showFileDeliveryModal(p) {
+            const modal = document.getElementById('buyModal');
+            const content = document.getElementById('buyModalContent');
+
+            let deliveryHtml = '';
+            if (p.isAimbody) {
+                const linkFile = "https://www.mediafire.com/file/rfl35xymuiw7yzk/Aimbody_adr.apk/file";
+                deliveryHtml = `
+                    <div class="text-center mb-3">
+                        <span class="text-3xl">🎉</span>
+                        <h3 class="text-lg font-extrabold text-white mt-1">Thanh Toán Thành Công!</h3>
+                        <p class="text-xs text-gray-400">Sản phẩm: <strong class="text-orange-400">${p.title}</strong></p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-[#07070a] border border-orange-500/40 mb-4 text-xs space-y-2">
+                        <label class="block text-gray-300 font-bold">Link tải file Aimbody:</label>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="fileLinkInput" readonly value="${linkFile}" class="w-full px-3 py-2 rounded-lg bg-[#121217] text-orange-300 font-mono text-[11px] border border-white/10 focus:outline-none">
+                            <button onclick="copyFileLink()" class="px-3.5 py-2 rounded-lg fancy-btn text-white font-bold text-xs whitespace-nowrap">📋 Sao chép</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                const zaloBox = "https://zalo.me/g/ojjqjjf5wb1mc9vtq0vl";
+                deliveryHtml = `
+                    <div class="text-center mb-3">
+                        <span class="text-3xl">🎉</span>
+                        <h3 class="text-lg font-extrabold text-white mt-1">Thanh Toán Thành Công!</h3>
+                        <p class="text-xs text-gray-400">Sản phẩm: <strong class="text-orange-400">${p.title}</strong></p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-[#07070a] border border-orange-500/40 mb-4 text-xs space-y-3">
+                        <p class="text-amber-300 font-bold text-center">Vào box để lấy file từ chủ box.</p>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="fileLinkInput" readonly value="${zaloBox}" class="w-full px-3 py-2 rounded-lg bg-[#121217] text-orange-300 font-mono text-[11px] border border-white/10 focus:outline-none">
+                            <button onclick="copyFileLink()" class="px-3.5 py-2 rounded-lg fancy-btn text-white font-bold text-xs whitespace-nowrap">📋 Sao chép</button>
+                        </div>
+                        <a href="${zaloBox}" target="_blank" class="block w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-center text-xs transition">
+                            🔗 Mở Link Box Zalo Ngay
+                        </a>
+                    </div>
+                `;
+            }
+
+            content.innerHTML = `
+                ${deliveryHtml}
+                <button onclick="closeBuyModal()" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition">
+                    Đóng
+                </button>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function copyFileLink() {
+            const input = document.getElementById('fileLinkInput');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(input.value);
+            showNotice('Thành công', 'Đã sao chép liên kết vào bộ nhớ tạm!');
+        }
+
+        // ================= NHẠC CHILL (PIANO, MƯA, GIÓ NHẸ NHÀNG) =================
+        let audioCtx = null;
+        let isMusicPlaying = false;
+        let ambientInterval = null;
+
+        function toggleChillMusic() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const disc = document.getElementById('vinylDisc');
+            const statusText = document.getElementById('musicStatusText');
+
+            if (isMusicPlaying) {
+                stopChillAudio();
+                disc.classList.remove('vinyl-spinning');
+                statusText.innerText = "🎵 Nhạc Chill: Tắt";
+                isMusicPlaying = false;
+            } else {
+                startChillAudio();
+                disc.classList.add('vinyl-spinning');
+                statusText.innerText = "🎶 Đang phát: Piano • Mưa • Gió";
+                isMusicPlaying = true;
+            }
+        }
+
+        function startChillAudio() {
+            if (!audioCtx) return;
+
+            const bufferSize = 2 * audioCtx.sampleRate;
+            const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const output = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+
+            const whiteNoise = audioCtx.createBufferSource();
+            whiteNoise.buffer = noiseBuffer;
+            whiteNoise.loop = true;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 500;
+
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.value = 0.05;
+
+            whiteNoise.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            whiteNoise.start();
+
+            window.currentRainNode = whiteNoise;
+
+            const pianoChords = [
+                [261.63, 329.63, 392.00, 523.25], // Cmaj7
+                [220.00, 261.63, 329.63, 440.00], // Am7
+                [174.61, 220.00, 261.63, 349.23], // Fmaj7
+                [196.00, 246.94, 293.66, 392.00]  // G7
+            ];
+            let chordIdx = 0;
+
+            ambientInterval = setInterval(() => {
+                if (!isMusicPlaying || !audioCtx) return;
+                const chord = pianoChords[chordIdx];
+                chordIdx = (chordIdx + 1) % pianoChords.length;
+
+                chord.forEach((freq, idx) => {
+                    setTimeout(() => {
+                        if (!isMusicPlaying || !audioCtx) return;
+                        const osc = audioCtx.createOscillator();
+                        const noteGain = audioCtx.createGain();
+
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                        noteGain.gain.setValueAtTime(0, audioCtx.currentTime);
+                        noteGain.gain.linearRampToValueAtTime(0.03, audioCtx.currentTime + 0.4);
+                        noteGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 4.5);
+
+                        osc.connect(noteGain);
+                        noteGain.connect(audioCtx.destination);
+
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 4.8);
+                    }, idx * 400);
+                });
+            }, 6000);
+        }
+
+        function stopChillAudio() {
+            if (window.currentRainNode) {
+                try { window.currentRainNode.stop(); } catch(e){}
+                window.currentRainNode = null;
+            }
+            if (ambientInterval) {
+                clearInterval(ambientInterval);
+                ambientInterval = null;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            drawHeroBanner();
+            renderProducts();
+            updateHeaderUI();
+        });
+    </script>
+</body>
+</html>
