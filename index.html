@@ -607,17 +607,19 @@
     <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
         const PRODUCTS = [
-            { id: 1, title: "Aimbody", category: "android", price: 80000, bannerTop: "AIMBODY", bannerSub: "ANDROID VIP", isMulti: false, isAimbody: true },
-            { id: 2, title: "Aimdrag", category: "android", price: 100000, bannerTop: "AIMDRAG", bannerSub: "ANDROID PRO", isMulti: false },
+            { id: 1, title: "Aimbody", category: "android", price: 80000, bannerTop: "AIMBODY", bannerSub: "ANDROID VIP", isMulti: false, downloadLink: "https://www.mediafire.com/file/rfl35xymuiw7yzk/Aimbody_adr.apk/file" },
+            { id: 2, title: "Aimdrag", category: "android", price: 100000, bannerTop: "AIMDRAG", bannerSub: "ANDROID PRO", isMulti: false, downloadLink: "https://www.mediafire.com/file/6e0h96meyo1r9gr/aim+drag+ffm.zip/file" },
             { id: 3, title: "Aim Make Riêng Theo Máy", category: "all", price: 20000, bannerTop: "CUSTOM MAKE", bannerSub: "MỌI THIẾT BỊ", isMulti: false, isCustomMake: true },
-            { id: 4, title: "Aimlock", category: "android", price: 50000, bannerTop: "AIMLOCK", bannerSub: "ANDROID STANDARD", isMulti: false },
-            { id: 5, title: "Nhẹ Tâm Cân Rank", category: "android", price: 20000, bannerTop: "NHẸ TÂM", bannerSub: "RANK SMOOTH", isMulti: false },
-            { id: 6, title: "Aimlock Plus v1", category: "android", price: 50000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 1", isMulti: false },
-            { id: 7, title: "Aimlock Plus v2", category: "android", price: 100000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 2", isMulti: false },
-            { id: 8, title: "Aimlock Plus v3", category: "android", price: 200000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 3", isMulti: false },
-            { id: 9, title: "Aimlock Plus v4", category: "android", price: 500000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 4 ULTIMATE", isMulti: false },
+            { id: 4, title: "Aimlock", category: "android", price: 50000, bannerTop: "AIMLOCK", bannerSub: "ANDROID STANDARD", isMulti: false, downloadLink: "https://www.mediafire.com/file/7w6y0k52gm7lnk8/Aimlock.7z/file" },
+            { id: 18, title: "Aimlock Neck", category: "android", price: 50000, bannerTop: "AIMLOCK NECK", bannerSub: "ANDROID HEAD/NECK", isMulti: false, downloadLink: "https://www.mediafire.com/file/rsksyy2mfxbztdn/aim+nêck+ffm+(1).zip/file" },
+            { id: 5, title: "Nhẹ Tâm Cân Rank", category: "android", price: 20000, bannerTop: "NHẸ TÂM", bannerSub: "RANK SMOOTH", isMulti: false, downloadLink: "https://www.mediafire.com/file/sdwehd5iqanksdc/NHETAM+V1+FF+OB55.7z/file" },
+            { id: 6, title: "Aimlock Plus v1", category: "android", price: 50000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 1", isMulti: false, downloadLink: "https://www.mediafire.com/file/ta8k17p79a9c4ic/AIMLOCK_ADR.so/file" },
+            { id: 7, title: "Aimlock Plus v2", category: "android", price: 100000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 2", isMulti: false, downloadLink: "https://www.mediafire.com/file/ta8k17p79a9c4ic/AIMLOCK_ADR.so/file" },
+            { id: 8, title: "Aimlock Plus v3", category: "android", price: 200000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 3", isMulti: false, downloadLink: "https://www.mediafire.com/file/jdlfp6o9sfyg120/AIMLOCK+90%+PRO_1.so/file" },
+            { id: 9, title: "Aimlock Plus v4", category: "android", price: 500000, bannerTop: "AIMLOCK+", bannerSub: "VERSION 4 ULTIMATE", isMulti: false, downloadLink: "https://www.mediafire.com/file/jdlfp6o9sfyg120/AIMLOCK+90%+PRO_1.so/file" },
             { 
                 id: 10, title: "KhangAimlockPannel", category: "android", bannerTop: "PANNEL", bannerSub: "ALL HACKS ANDROID", isMulti: true,
+                downloadLink: "https://www.mediafire.com/file/iuj1gsnoati1adw/9b0cbdeb-b4a0-4a13-9697-52738195804b_KhangPannel+1.0.zip/file",
                 options: [
                     { label: "20k / day", price: 20000 },
                     { label: "50k / week", price: 50000 },
@@ -628,6 +630,7 @@
             },
             { 
                 id: 11, title: "App Aimlock", category: "android", bannerTop: "APP AIMLOCK", bannerSub: "ANDROID APP", isMulti: true,
+                downloadLink: "https://www.mediafire.com/file/ge9jq7zm2qp6jk0/b7f81ecd-a82e-4f1a-8dd0-8deb0e6c28ed_Lıto+Hack+Collider.Safe_1.apk/file",
                 options: [
                     { label: "20k / day", price: 20000 },
                     { label: "100k / vĩnh viễn", price: 100000 }
@@ -644,7 +647,7 @@
                     { label: "500k / vĩnh viễn", price: 500000 }
                 ]
             },
-            { id: 14, title: "Aimbody", category: "ios", price: 80000, bannerTop: "AIMBODY", bannerSub: "IOS VIP", isMulti: false, isAimbody: true },
+            { id: 14, title: "Aimbody", category: "ios", price: 80000, bannerTop: "AIMBODY", bannerSub: "IOS VIP", isMulti: false, downloadLink: "https://www.mediafire.com/file/rfl35xymuiw7yzk/Aimbody_adr.apk/file" },
             { id: 15, title: "Aimneck", category: "ios", price: 50000, bannerTop: "AIMNECK", bannerSub: "IOS HEAD/NECK", isMulti: false },
             { id: 16, title: "Aimdrag", category: "ios", price: 80000, bannerTop: "AIMDRAG", bannerSub: "IOS DRAG", isMulti: false },
             { id: 17, title: "Aimlock", category: "ios", price: 50000, bannerTop: "AIMLOCK", bannerSub: "IOS STANDARD", isMulti: false }
@@ -1561,7 +1564,7 @@
                 price: finalPrice,
                 time: timeStr,
                 device: deviceVal,
-                link: p.isAimbody ? "https://www.mediafire.com/file/rfl35xymuiw7yzk/Aimbody_adr.apk/file" : "khangday.make.file"
+                link: p.downloadLink ? p.downloadLink : "khangday.make.file"
             };
             if (!currentUser.orders) currentUser.orders = [];
             currentUser.orders.push(orderItem);
@@ -1586,24 +1589,34 @@
             const content = document.getElementById('buyModalContent');
 
             let deliveryHtml = '';
-            if (p.isAimbody) {
-                const linkFile = "https://www.mediafire.com/file/rfl35xymuiw7yzk/Aimbody_adr.apk/file";
+            if (p.downloadLink) {
                 deliveryHtml = `
                     <div class="text-center mb-3">
                         <span class="text-3xl">🎉</span>
                         <h3 class="text-lg font-extrabold text-white mt-1">Thanh Toán Thành Công!</h3>
                         <p class="text-xs text-gray-400">Sản phẩm: <strong class="text-orange-400">${p.title}</strong></p>
                     </div>
-                    <div class="p-3.5 rounded-xl bg-[#07070a] border border-orange-500/40 mb-4 text-xs space-y-2">
-                        <label class="block text-gray-300 font-bold">Link tải file Aimbody:</label>
+                    <div class="p-3.5 rounded-xl bg-[#07070a] border border-orange-500/40 mb-4 text-xs space-y-2.5">
+                        <label class="block text-gray-300 font-bold">Link tải file ${p.title}:</label>
                         <div class="flex items-center gap-2">
-                            <input type="text" id="fileLinkInput" readonly value="${linkFile}" class="w-full px-3 py-2 rounded-lg bg-[#121217] text-orange-300 font-mono text-[11px] border border-white/10 focus:outline-none">
+                            <input type="text" id="fileLinkInput" readonly value="${p.downloadLink}" class="w-full px-3 py-2 rounded-lg bg-[#121217] text-orange-300 font-mono text-[11px] border border-white/10 focus:outline-none">
                             <button onclick="copyFileLink()" class="px-3.5 py-2 rounded-lg fancy-btn text-white font-bold text-xs whitespace-nowrap">📋 Sao chép</button>
                         </div>
+                        <a href="${p.downloadLink}" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-2 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 font-bold text-xs transition">
+                            ⬇️ Mở Link Tải Ngay
+                        </a>
                     </div>
                 `;
             } else {
                 const linkFile = "khangday.make.file";
+                const topNoticeHtml = p.isCustomMake
+                    ? `<div class="p-3.5 rounded-xl bg-orange-600/20 border-2 border-orange-500 text-orange-200 text-sm sm:text-base font-extrabold leading-snug text-center shadow-lg">
+                           📢 KB ACC TIKTOK NÀY RỒI ĐƯA DÒNG MÁY CHO ACC ĐẤY
+                       </div>`
+                    : `<div class="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] leading-relaxed">
+                           <strong>⚠️ Lưu ý:</strong> Khi mua xong, chụp màn hình lại, nhập id ở dưới lên tiktok, rồi nhắn tin acc tik đấy, gửi ảnh đã chụp rồi đợi acc đó gửi lại file.
+                       </div>`;
+
                 deliveryHtml = `
                     <div class="text-center mb-3">
                         <span class="text-3xl">🎉</span>
@@ -1611,13 +1624,12 @@
                         <p class="text-xs text-gray-400">Tên sản phẩm đã mua: <strong class="text-orange-400">${p.title}</strong></p>
                     </div>
                     <div class="p-3.5 rounded-xl bg-[#07070a] border border-orange-500/40 mb-4 text-xs space-y-3">
+                        ${p.isCustomMake ? topNoticeHtml : ''}
                         <div class="flex items-center gap-2">
                             <input type="text" id="fileLinkInput" readonly value="${linkFile}" class="w-full px-3 py-2 rounded-lg bg-[#121217] text-orange-300 font-mono text-[11px] border border-white/10 focus:outline-none">
                             <button onclick="copyFileLink()" class="px-3.5 py-2 rounded-lg fancy-btn text-white font-bold text-xs whitespace-nowrap">📋 Sao chép</button>
                         </div>
-                        <div class="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] leading-relaxed">
-                            <strong>⚠️ Lưu ý:</strong> Khi mua xong, chụp màn hình lại, nhập id ở dưới lên tiktok, rồi nhắn tin acc tik đấy, gửi ảnh đã chụp rồi đợi acc đó gửi lại file.
-                        </div>
+                        ${!p.isCustomMake ? topNoticeHtml : ''}
                     </div>
                 `;
             }
