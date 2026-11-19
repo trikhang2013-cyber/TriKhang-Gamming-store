@@ -263,6 +263,46 @@
         </div>
     </div>
 
+    <!-- ================= MODAL LỊCH SỬ GIAO DỊCH ================= -->
+    <div id="historyModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#0e0e12] border border-orange-500/40 rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📜</span>
+                    <h3 class="text-lg font-extrabold text-white">Lịch Sử Giao Dịch</h3>
+                </div>
+                <button onclick="closeHistoryModal()" class="text-gray-400 hover:text-white w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center">✕</button>
+            </div>
+            <div class="flex gap-2 mb-4">
+                <button onclick="switchHistoryTab('orders')" id="histTabOrders" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-orange-600 text-white transition">🛒 Lịch Sử Mua Hàng</button>
+                <button onclick="switchHistoryTab('cards')" id="histTabCards" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#16161d] text-gray-400 hover:text-white transition">⚡ Lịch Sử Nạp Thẻ</button>
+            </div>
+            <div id="historyContentArea" class="flex-grow overflow-y-auto space-y-2.5 text-xs pr-1"></div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL THÔNG TIN TÀI KHOẢN ================= -->
+    <div id="accountModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-[#0e0e12] border border-orange-500/40 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button onclick="closeAccountModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center">✕</button>
+            <div class="text-center mb-5">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-3xl mx-auto mb-3 shadow-lg shadow-orange-600/30">🦖</div>
+                <h3 class="text-lg font-extrabold text-white" id="accModalUsername">Tài Khoản</h3>
+                <p class="text-xs text-gray-400" id="accModalRole">Thành viên Trí Khang Store</p>
+            </div>
+            <div class="p-4 rounded-xl bg-[#07070a] border border-white/10 space-y-2.5 text-xs mb-5">
+                <div class="flex justify-between"><span class="text-gray-400">Số dư khả dụng:</span><strong class="text-emerald-400 font-extrabold" id="accModalBalance">0 đ</strong></div>
+                <div class="flex justify-between"><span class="text-gray-400">Số đơn đã mua:</span><strong class="text-white" id="accModalOrdersCount">0 đơn</strong></div>
+                <div class="flex justify-between"><span class="text-gray-400">Số thẻ đã nạp:</span><strong class="text-amber-400" id="accModalCardsCount">0 thẻ</strong></div>
+            </div>
+            <form onsubmit="handleChangePassword(event)" class="space-y-3 border-t border-white/10 pt-4">
+                <div class="text-xs font-bold text-orange-400">🔑 Đổi Mật Khẩu Mới</div>
+                <input type="password" id="newAccPassword" required placeholder="Nhập mật khẩu mới..." class="w-full px-3.5 py-2 rounded-xl bg-[#07070a] border border-white/15 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-orange-500">
+                <button type="submit" class="w-full py-2.5 rounded-xl fancy-btn text-white font-bold text-xs transition">Cập Nhật Mật Khẩu</button>
+            </form>
+        </div>
+    </div>
+
     <!-- ================= MODAL THÔNG BÁO TÙY CHỈNH (TRONG WEB) ================= -->
     <div id="noticeModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-[#0e0e12] border border-orange-500/40 text-white rounded-2xl w-full max-w-sm p-6 shadow-2xl">
@@ -696,27 +736,89 @@
             }).join('');
         }
 
+        function toggleUserDropdown(e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById('userDropdownMenu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function closeUserDropdown() {
+            const menu = document.getElementById('userDropdownMenu');
+            if (menu) menu.classList.add('hidden');
+        }
+
+        document.addEventListener('click', function(e) {
+            const wrapper = document.getElementById('userDropdownWrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                closeUserDropdown();
+            }
+        });
+
         function updateHeaderUI() {
             const area = document.getElementById('headerAuthArea');
             if (currentUser) {
-                let adminButtons = (currentUser.isAdmin || currentUser.username.toLowerCase() === 'trí khang')
+                const isAdmin = currentUser.isAdmin || currentUser.username.toLowerCase() === 'trí khang';
+                let adminButtons = isAdmin
                     ? `
-                      <button onclick="openAdminModal()" class="px-2.5 py-1.5 rounded-xl fancy-btn text-xs font-black text-white transition shadow-lg">👑 Admin</button>
-                      <button onclick="openAdminChatModal()" class="px-2.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-black text-white transition shadow-lg">📱 Chat Khách</button>
-                      <button onclick="promptRefundPassword()" class="px-2.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-xs font-black text-black transition shadow-lg">💰 Hoàn Tiền</button>
+                      <button onclick="openAdminChatModal()" class="hidden md:inline-flex px-2.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-black text-white transition shadow-lg">📱 Chat Khách</button>
+                      <button onclick="promptRefundPassword()" class="hidden md:inline-flex px-2.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-xs font-black text-black transition shadow-lg">💰 Hoàn Tiền</button>
                       `
                     : '';
 
+                let adminDropdownItems = isAdmin
+                    ? `
+                        <button onclick="closeUserDropdown(); openAdminModal();" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold text-orange-400 hover:bg-orange-500/15 transition flex items-center gap-2.5">
+                            <span>👑</span> Bảng điều khiển Admin
+                        </button>
+                        <button onclick="closeUserDropdown(); openAdminChatModal();" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold text-blue-400 hover:bg-blue-500/15 transition flex items-center gap-2.5 md:hidden">
+                            <span>📱</span> Chat Khách Hàng
+                        </button>
+                        <button onclick="closeUserDropdown(); promptRefundPassword();" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold text-amber-400 hover:bg-amber-500/15 transition flex items-center gap-2.5 md:hidden">
+                            <span>💰</span> Quản Lý Hoàn Tiền
+                        </button>
+                      `
+                    : '';
+
+                // Đếm thông báo chưa đọc (nếu có)
+                const myNotifs = (currentUser.notifications || []);
+                const unreadBadge = myNotifs.length > 0 ? `<span class="ml-auto px-1.5 py-0.5 text-[10px] rounded-full bg-orange-600 text-white font-bold">${myNotifs.length}</span>` : '';
+
                 area.innerHTML = `
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2 relative" id="userDropdownWrapper">
                         ${adminButtons}
-                        <div class="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs font-extrabold">
-                            💰 ${currentUser.balance.toLocaleString('vi-VN')} đ
+                        <div class="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs font-extrabold flex items-center gap-1.5">
+                            <span class="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center text-[11px]">💳</span>
+                            <span>${currentUser.balance.toLocaleString('vi-VN')} đ</span>
                         </div>
-                        <div class="px-3 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-white">
-                            👤 ${currentUser.username}
+                        <button onclick="toggleUserDropdown(event)" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-bold text-white transition active:scale-95">
+                            <span class="w-6 h-6 rounded-lg bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-xs shadow">🦖</span>
+                            <span class="max-w-[110px] truncate">${currentUser.username}</span>
+                            <span class="text-gray-400 text-[11px] ml-0.5">☰</span>
+                        </button>
+
+                        <!-- Bảng Dropdown Menu Tài Khoản -->
+                        <div id="userDropdownMenu" class="hidden absolute right-0 top-12 w-64 bg-[#0e0e13]/95 backdrop-blur-xl border border-orange-500/40 rounded-2xl p-2 shadow-2xl shadow-black/90 z-50 space-y-1">
+                            <a href="#top" onclick="closeUserDropdown()" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-extrabold bg-orange-500/15 text-orange-400 border border-orange-500/30 transition flex items-center gap-2.5">
+                                <span>🏠</span> Trang chủ
+                            </a>
+                            <a href="#products" onclick="closeUserDropdown()" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:bg-white/10 hover:text-white transition flex items-center gap-2.5">
+                                <span>🛍️</span> Kho sản phẩm
+                            </a>
+                            <button onclick="closeUserDropdown(); openHistoryModal();" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:bg-white/10 hover:text-white transition flex items-center gap-2.5">
+                                <span>📜</span> Lịch sử giao dịch ${unreadBadge}
+                            </button>
+                            <button onclick="closeUserDropdown(); handleTopUpClick();" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:bg-white/10 hover:text-white transition flex items-center gap-2.5">
+                                <span>⚡</span> Nạp tiền
+                            </button>
+                            <button onclick="closeUserDropdown(); openAccountModal();" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-semibold text-gray-200 hover:bg-white/10 hover:text-white transition flex items-center gap-2.5">
+                                <span>👤</span> Tài khoản
+                            </button>
+                            ${adminDropdownItems}
+                            <div class="border-t border-white/10 my-1"></div>
+                            <button onclick="closeUserDropdown(); logoutUser();" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold text-rose-400 hover:bg-rose-500/15 transition flex items-center gap-2.5">
+                                <span>🚪</span> Đăng xuất (${currentUser.username})
+                            </button>
                         </div>
-                        <button onclick="logoutUser()" class="px-2.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 text-xs font-bold transition">Thoát</button>
                     </div>
                 `;
             } else {
@@ -781,6 +883,7 @@
                     updateHeaderUI();
                     closeAuthModal();
                     showNotice('Thành công', `Đăng nhập thành công tài khoản ${currentUser.username}!`);
+                    setTimeout(checkPendingUserNotifications, 600);
                 } else {
                     showNotice('Lỗi đăng nhập', 'Tên tài khoản hoặc mật khẩu không chính xác!');
                 }
@@ -935,10 +1038,43 @@
                                 <button onclick="approveCard(${c.id})" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] transition">Xác Nhận</button>
                                 <button onclick="rejectCard(${c.id})" class="px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-bold text-[11px] transition">Từ Chối</button>
                             </div>
-                        ` : `<span class="text-xs text-gray-500">Đã xử lý</span>`}
+                        ` : `
+                            <div class="flex items-center justify-center gap-2">
+                                <span class="text-xs text-gray-500">Đã xử lý</span>
+                                <button onclick="deleteCardRecord(${c.id})" title="Xóa lịch sử thẻ này" class="w-6 h-6 rounded-lg bg-rose-600/20 hover:bg-rose-600 text-rose-400 hover:text-white font-extrabold text-xs transition flex items-center justify-center">✕</button>
+                            </div>
+                        `}
                     </td>
                 </tr>
             `).join('');
+        }
+
+        function deleteCardRecord(cardId) {
+            pendingCards = pendingCards.filter(c => c.id !== cardId);
+            saveDatabases();
+            renderAdminTables();
+        }
+
+        function pushUserNotification(username, title, msg) {
+            const targetUser = usersDB.find(u => u.username.toLowerCase() === username.toLowerCase());
+            if (!targetUser) return;
+            if (!targetUser.notifications) targetUser.notifications = [];
+            targetUser.notifications.push({ id: Date.now(), title, msg });
+            if (currentUser && currentUser.username.toLowerCase() === targetUser.username.toLowerCase()) {
+                currentUser.notifications = targetUser.notifications;
+            }
+        }
+
+        function checkPendingUserNotifications() {
+            if (!currentUser) return;
+            const userInDB = usersDB.find(u => u.username.toLowerCase() === currentUser.username.toLowerCase());
+            if (userInDB && userInDB.notifications && userInDB.notifications.length > 0) {
+                const notif = userInDB.notifications.shift();
+                currentUser.notifications = userInDB.notifications;
+                saveDatabases();
+                updateHeaderUI();
+                showNotice(notif.title, notif.msg);
+            }
         }
 
         function approveCard(cardId) {
@@ -950,15 +1086,19 @@
             const targetUser = usersDB.find(u => u.username.toLowerCase() === card.username.toLowerCase());
             if (targetUser) {
                 targetUser.balance += card.amount;
+                const msg = `Thẻ ${card.network} mệnh giá ${card.amount.toLocaleString('vi-VN')}đ (Seri: ${card.serial}) đã được duyệt thành công! Số dư hiện tại: ${targetUser.balance.toLocaleString('vi-VN')}đ.`;
                 if (currentUser && currentUser.username.toLowerCase() === targetUser.username.toLowerCase()) {
                     currentUser.balance = targetUser.balance;
                     updateHeaderUI();
+                    showNotice('Nạp Thẻ Thành Công!', msg);
+                } else {
+                    pushUserNotification(targetUser.username, 'Nạp Thẻ Thành Công!', msg);
+                    showNotice('Đã xác nhận', `Đã duyệt thẻ ${card.network} trị giá ${card.amount.toLocaleString('vi-VN')}đ cho tài khoản ${card.username}!`);
                 }
             }
 
             saveDatabases();
             renderAdminTables();
-            showNotice('Đã xác nhận', `Đã duyệt thẻ ${card.network} trị giá ${card.amount.toLocaleString('vi-VN')}đ cho tài khoản ${card.username}!`);
         }
 
         function rejectCard(cardId) {
@@ -966,9 +1106,116 @@
             if (!card || card.status !== 'Chờ duyệt') return;
 
             card.status = 'Từ chối';
+            const rejectMsg = `Nạp thẻ ${card.network} mệnh giá ${card.amount.toLocaleString('vi-VN')}đ (Seri: ${card.serial}) KHÔNG THÀNH CÔNG! Vui lòng kiểm tra lại mã thẻ/seri hoặc liên hệ Admin.`;
+
+            if (currentUser && currentUser.username.toLowerCase() === card.username.toLowerCase()) {
+                showNotice('Nạp Thẻ Không Thành Công', rejectMsg);
+            } else {
+                pushUserNotification(card.username, 'Nạp Thẻ Không Thành Công', rejectMsg);
+                showNotice('Đã từ chối & gửi thông báo', `Đã từ chối thẻ của ${card.username} và gửi thông báo nạp không thành công tới người dùng.`);
+            }
+
             saveDatabases();
             renderAdminTables();
-            showNotice('Đã từ chối', `Đã từ chối thẻ của tài khoản ${card.username}.`);
+        }
+
+        // ================= LỊCH SỬ GIAO DỊCH & TÀI KHOẢN =================
+        let currentHistoryTab = 'orders';
+        function openHistoryModal() {
+            if (!currentUser) return;
+            switchHistoryTab('orders');
+            document.getElementById('historyModal').classList.remove('hidden');
+            document.getElementById('historyModal').classList.add('flex');
+        }
+        function closeHistoryModal() {
+            document.getElementById('historyModal').classList.add('hidden');
+            document.getElementById('historyModal').classList.remove('flex');
+        }
+        function switchHistoryTab(tab) {
+            currentHistoryTab = tab;
+            const btnOrders = document.getElementById('histTabOrders');
+            const btnCards = document.getElementById('histTabCards');
+            if (tab === 'orders') {
+                btnOrders.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-orange-600 text-white transition";
+                btnCards.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#16161d] text-gray-400 hover:text-white transition";
+            } else {
+                btnCards.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-orange-600 text-white transition";
+                btnOrders.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#16161d] text-gray-400 hover:text-white transition";
+            }
+            renderHistoryContent();
+        }
+        function renderHistoryContent() {
+            const area = document.getElementById('historyContentArea');
+            const userInDB = usersDB.find(u => u.username.toLowerCase() === currentUser.username.toLowerCase()) || currentUser;
+
+            if (currentHistoryTab === 'orders') {
+                const orders = userInDB.orders || [];
+                if (orders.length === 0) {
+                    area.innerHTML = `<div class="text-center text-gray-500 py-12">Bạn chưa có đơn hàng nào.</div>`;
+                    return;
+                }
+                area.innerHTML = orders.slice().reverse().map(o => `
+                    <div class="p-3.5 rounded-xl bg-[#07070a] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <div class="font-bold text-white text-sm">${o.title}</div>
+                            <div class="text-[11px] text-gray-400">Thời gian: ${o.time} ${o.device ? '• Thiết bị: ' + o.device : ''}</div>
+                            <div class="text-[11px] text-orange-300 font-mono mt-1">Link/ID: ${o.link}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-orange-400 font-extrabold">-${o.price.toLocaleString('vi-VN')} đ</div>
+                            <span class="inline-block px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold mt-1">Đã thanh toán</span>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                const myCards = pendingCards.filter(c => c.username.toLowerCase() === currentUser.username.toLowerCase());
+                if (myCards.length === 0) {
+                    area.innerHTML = `<div class="text-center text-gray-500 py-12">Bạn chưa gửi thẻ nạp nào.</div>`;
+                    return;
+                }
+                area.innerHTML = myCards.slice().reverse().map(c => `
+                    <div class="p-3.5 rounded-xl bg-[#07070a] border border-white/10 flex items-center justify-between gap-2">
+                        <div>
+                            <div class="font-bold text-white">${c.network} - <span class="text-amber-400">${c.amount.toLocaleString('vi-VN')} đ</span></div>
+                            <div class="text-[11px] text-gray-400 font-mono">Seri: ${c.serial} | PIN: ${c.pin}</div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold ${c.status === 'Thành công' ? 'bg-emerald-500/20 text-emerald-300' : (c.status === 'Từ chối' ? 'bg-rose-500/20 text-rose-300' : 'bg-amber-500/20 text-amber-300')}">
+                            ${c.status === 'Từ chối' ? 'Không thành công' : c.status}
+                        </span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function openAccountModal() {
+            if (!currentUser) return;
+            const userInDB = usersDB.find(u => u.username.toLowerCase() === currentUser.username.toLowerCase()) || currentUser;
+            const myCards = pendingCards.filter(c => c.username.toLowerCase() === currentUser.username.toLowerCase());
+            document.getElementById('accModalUsername').innerText = userInDB.username;
+            document.getElementById('accModalRole').innerText = (userInDB.isAdmin || userInDB.username.toLowerCase() === 'trí khang') ? '👑 Quản Trị Viên (Admin)' : '🎮 Thành Viên VIP';
+            document.getElementById('accModalBalance').innerText = userInDB.balance.toLocaleString('vi-VN') + ' đ';
+            document.getElementById('accModalOrdersCount').innerText = (userInDB.orders ? userInDB.orders.length : 0) + ' đơn';
+            document.getElementById('accModalCardsCount').innerText = myCards.length + ' thẻ';
+            document.getElementById('newAccPassword').value = '';
+            document.getElementById('accountModal').classList.remove('hidden');
+            document.getElementById('accountModal').classList.add('flex');
+        }
+        function closeAccountModal() {
+            document.getElementById('accountModal').classList.add('hidden');
+            document.getElementById('accountModal').classList.remove('flex');
+        }
+        function handleChangePassword(e) {
+            e.preventDefault();
+            const newPass = document.getElementById('newAccPassword').value.trim();
+            if (!newPass) return;
+            const idx = usersDB.findIndex(u => u.username.toLowerCase() === currentUser.username.toLowerCase());
+            if (idx !== -1) {
+                usersDB[idx].password = newPass;
+                currentUser.password = newPass;
+                saveDatabases();
+            }
+            closeAccountModal();
+            showNotice('Thành công', 'Đã cập nhật mật khẩu mới cho tài khoản của bạn!');
         }
 
         // ================= PHẦN HOÀN TIỀN (MK: 08042014) =================
@@ -1305,9 +1552,25 @@
             }
 
             currentUser.balance -= finalPrice;
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('vi-VN', {hour:'2-digit', minute:'2-digit'}) + ' ' + now.toLocaleDateString('vi-VN');
+            const deviceVal = (p.isCustomMake && document.getElementById('customDeviceInput')) ? document.getElementById('customDeviceInput').value.trim() : '';
+            const orderItem = {
+                id: Date.now(),
+                title: p.title,
+                price: finalPrice,
+                time: timeStr,
+                device: deviceVal,
+                link: p.isAimbody ? "https://www.mediafire.com/file/rfl35xymuiw7yzk/Aimbody_adr.apk/file" : "khangday.make.file"
+            };
+            if (!currentUser.orders) currentUser.orders = [];
+            currentUser.orders.push(orderItem);
+
             const idx = usersDB.findIndex(u => u.username.toLowerCase() === currentUser.username.toLowerCase());
             if (idx !== -1) {
                 usersDB[idx].balance = currentUser.balance;
+                if (!usersDB[idx].orders) usersDB[idx].orders = [];
+                usersDB[idx].orders.push(orderItem);
             }
 
             saveDatabases();
@@ -1485,6 +1748,7 @@
             drawHeroBanner();
             renderProducts();
             updateHeaderUI();
+            checkPendingUserNotifications();
         });
     </script>
 </body>
